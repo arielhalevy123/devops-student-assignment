@@ -1,6 +1,6 @@
 # DevOps Student Assignment
 
-## 🌟 Overview
+##  Overview
 
 This project is a fully automated serverless application deployed on AWS using Infrastructure as Code (IaC) with AWS CDK (Python).
 
@@ -12,7 +12,7 @@ The application performs the following:
 
 ---
 
-## 🚀 Setup & Deployment
+##  Setup & Deployment
 
 ### Prerequisites
 - AWS account with programmatic access.
@@ -48,7 +48,7 @@ cdk deploy --require-approval never
 
 ---
 
-## 💻 GitHub Actions
+##  GitHub Actions
 
 A GitHub Actions workflow (`.github/workflows/deploy.yml`) is configured to:
 - Deploy the CDK stack.
@@ -57,7 +57,7 @@ A GitHub Actions workflow (`.github/workflows/deploy.yml`) is configured to:
 
 ---
 
-## 📄 Lambda Function Details
+##  Lambda Function Details
 
 - Language: Python 3.9
 - Functionality:
@@ -70,32 +70,32 @@ A GitHub Actions workflow (`.github/workflows/deploy.yml`) is configured to:
 
 ---
 
-## ☁️ S3 Bucket
+##  S3 Bucket
 
 - Created via CDK.
 - Files from `sample_files/` are uploaded automatically as part of deployment.
 
 ---
 
-## ✉️ SNS & Email Subscription
+##  SNS & Email Subscription
 
 - An SNS topic is created via code.
 - You will receive an email upon Lambda execution.  
-⚠️ **Important:** Make sure to confirm your email subscription after the first deployment (check your email for the confirmation link).
+ **Important:** Make sure to confirm your email subscription after the first deployment (check your email for the confirmation link).
 
 ---
 
-## 🧪 Manual Lambda Test
+##  Manual Lambda Test
 
 You can manually invoke the Lambda function from the AWS Console:
 
-1️⃣ Go to AWS Lambda Console → Your function → Test.  
-2️⃣ Create a new test event (you can keep the default content).  
-3️⃣ Click **Test** and check CloudWatch logs and your email for results.
+1️ Go to AWS Lambda Console → Your function → Test.  
+2️ Create a new test event (you can keep the default content).  
+3️ Click **Test** and check CloudWatch logs and your email for results.
 
 ---
 
-## ⚙️ Tools & Frameworks Used
+##  Tools & Frameworks Used
 
 - AWS CDK (Python)
 - AWS Lambda
@@ -106,7 +106,7 @@ You can manually invoke the Lambda function from the AWS Console:
 
 ---
 
-## 📂 Folder Structure
+##  Folder Structure
 
 ```
 devops-student-assignment/
@@ -127,16 +127,16 @@ devops-student-assignment/
 
 ---
 
-## ✅ Status
+##  Status
 
-- ✅ Fully deployed
-- ✅ Email notifications working
-- ✅ Files uploaded
-- ✅ Manual and automated triggers tested
+-  Fully deployed
+-  Email notifications working
+-  Files uploaded
+-  Manual and automated triggers tested
 
 ---
 
-## 💬 Contact
+##  Contact
 
 For any questions, feel free to open an issue or contact me directly via GitHub.
 
