@@ -1,58 +1,143 @@
+# DevOps Student Assignment
 
-# Welcome to your CDK Python project!
+## 🌟 Overview
 
-This is a blank project for CDK development with Python.
+This project is a fully automated serverless application deployed on AWS using Infrastructure as Code (IaC) with AWS CDK (Python).
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+The application performs the following:
+- Lists all objects in an S3 bucket.
+- Sends an email notification with execution details using SNS.
+- Uploads sample files to the S3 bucket during deployment.
+- Supports manual triggering of the Lambda function for testing.
 
-This project is set up like a standard Python project.  The initialization
-process also creates a virtualenv within this project, stored under the `.venv`
-directory.  To create the virtualenv it assumes that there is a `python3`
-(or `python` for Windows) executable in your path with access to the `venv`
-package. If for any reason the automatic creation of the virtualenv fails,
-you can create the virtualenv manually.
+---
 
-To manually create a virtualenv on MacOS and Linux:
+## 🚀 Setup & Deployment
 
-```
-$ python3 -m venv .venv
-```
+### Prerequisites
+- AWS account with programmatic access.
+- Python 3.9
+- Node.js (for CDK)
+- AWS CDK installed (`npm install -g aws-cdk`)
+- GitHub account
 
-After the init process completes and the virtualenv is created, you can use the following
-step to activate your virtualenv.
-
-```
-$ source .venv/bin/activate
-```
-
-If you are a Windows platform, you would activate the virtualenv like this:
-
-```
-% .venv\Scripts\activate.bat
+### Clone the repository
+```bash
+git clone https://github.com/arielhalevy123/devops-student-assignment.git
+cd devops-student-assignment
 ```
 
-Once the virtualenv is activated, you can install the required dependencies.
-
-```
-$ pip install -r requirements.txt
-```
-
-At this point you can now synthesize the CloudFormation template for this code.
-
-```
-$ cdk synth
+### Install dependencies
+```bash
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+npm install -g aws-cdk
 ```
 
-To add additional dependencies, for example other CDK libraries, just add
-them to your `setup.py` file and rerun the `pip install -r requirements.txt`
-command.
+### Configure AWS credentials
+```bash
+export AWS_ACCESS_KEY_ID=your_key
+export AWS_SECRET_ACCESS_KEY=your_secret
+export AWS_DEFAULT_REGION=eu-central-1
+```
 
-## Useful commands
+### Deploy
+```bash
+cdk deploy --require-approval never
+```
 
- * `cdk ls`          list all stacks in the app
- * `cdk synth`       emits the synthesized CloudFormation template
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk docs`        open CDK documentation
+---
 
-Enjoy!
+## 💻 GitHub Actions
+
+A GitHub Actions workflow (`.github/workflows/deploy.yml`) is configured to:
+- Deploy the CDK stack.
+- Upload files from `sample_files/` to S3.
+- Trigger manually using `workflow_dispatch`.
+
+---
+
+## 📄 Lambda Function Details
+
+- Language: Python 3.9
+- Functionality:
+  - Lists objects in the S3 bucket.
+  - Publishes an SNS message with the list of files.
+- IAM permissions:
+  - S3 read access
+  - SNS publish access
+  - Lambda execution role
+
+---
+
+## ☁️ S3 Bucket
+
+- Created via CDK.
+- Files from `sample_files/` are uploaded automatically as part of deployment.
+
+---
+
+## ✉️ SNS & Email Subscription
+
+- An SNS topic is created via code.
+- You will receive an email upon Lambda execution.  
+⚠️ **Important:** Make sure to confirm your email subscription after the first deployment (check your email for the confirmation link).
+
+---
+
+## 🧪 Manual Lambda Test
+
+You can manually invoke the Lambda function from the AWS Console:
+
+1️⃣ Go to AWS Lambda Console → Your function → Test.  
+2️⃣ Create a new test event (you can keep the default content).  
+3️⃣ Click **Test** and check CloudWatch logs and your email for results.
+
+---
+
+## ⚙️ Tools & Frameworks Used
+
+- AWS CDK (Python)
+- AWS Lambda
+- AWS S3
+- AWS SNS
+- GitHub Actions
+- Boto3 (for file upload script)
+
+---
+
+## 📂 Folder Structure
+
+```
+devops-student-assignment/
+├── .github/workflows/
+│   └── deploy.yml
+├── devops_student_assignment/
+│   ├── __init__.py
+│   └── devops_student_assignment_stack.py
+├── sample_files/
+│   ├── file1.txt
+│   └── file2.txt
+├── upload_files.py
+├── app.py
+├── cdk.json
+├── requirements.txt
+├── README.md
+```
+
+---
+
+## ✅ Status
+
+- ✅ Fully deployed
+- ✅ Email notifications working
+- ✅ Files uploaded
+- ✅ Manual and automated triggers tested
+
+---
+
+## 💬 Contact
+
+For any questions, feel free to open an issue or contact me directly via GitHub.
+
+---
