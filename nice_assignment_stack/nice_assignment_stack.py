@@ -32,7 +32,7 @@ class NiceAssignmentStack(Stack):
         lambda_role.add_managed_policy(iam.ManagedPolicy.from_aws_managed_policy_name("service-role/AWSLambdaBasicExecutionRole"))
         lambda_role.add_to_policy(iam.PolicyStatement(
             actions=["s3:ListBucket", "sns:Publish"],
-            resources=["*"]
+               resources=[bucket.bucket_arn,topic.topic_arn]
         ))
 
         # Lambda Function
