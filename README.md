@@ -1,6 +1,6 @@
-# DevOps Student Assignment
+# Nice Assignment
 
-##  Overview
+## Overview
 
 This project is a fully automated serverless application deployed on AWS using Infrastructure as Code (IaC) with AWS CDK (Python).
 
@@ -12,19 +12,19 @@ The application performs the following:
 
 ---
 
-##  Setup & Deployment
+## Setup & Deployment
 
 ### Prerequisites
-- AWS account with programmatic access.
-- Python 3.9
+- AWS account with programmatic access
+- Python 3.11
 - Node.js (for CDK)
-- AWS CDK installed (`npm install -g aws-cdk`)
+- AWS CDK installed
 - GitHub account
 
 ### Clone the repository
 ```bash
-git clone https://github.com/arielhalevy123/devops-student-assignment.git
-cd devops-student-assignment
+git clone https://github.com/arielhalevy123/nice-assignment.git
+cd nice-assignment
 ```
 
 ### Install dependencies
@@ -48,21 +48,21 @@ cdk deploy --require-approval never
 
 ---
 
-##  GitHub Actions
+## GitHub Actions
 
 A GitHub Actions workflow (`.github/workflows/deploy.yml`) is configured to:
 - Deploy the CDK stack.
-- Upload files from `sample_files/` to S3.
-- Trigger manually using `workflow_dispatch`.
+- Optionally upload files from `sample_files/` to S3 in a separate workflow.
+- Can be triggered manually using `workflow_dispatch`.
 
 ---
 
-##  Lambda Function Details
+## Lambda Function Details
 
-- Language: Python 3.9
+- Language: Python 3.11
 - Functionality:
-  - Lists objects in the S3 bucket.
-  - Publishes an SNS message with the list of files.
+  - Lists objects in the S3 bucket
+  - Publishes an SNS message with the list of files
 - IAM permissions:
   - S3 read access
   - SNS publish access
@@ -70,32 +70,32 @@ A GitHub Actions workflow (`.github/workflows/deploy.yml`) is configured to:
 
 ---
 
-##  S3 Bucket
+## S3 Bucket
 
-- Created via CDK.
-- Files from `sample_files/` are uploaded automatically as part of deployment.
-
----
-
-##  SNS & Email Subscription
-
-- An SNS topic is created via code.
-- You will receive an email upon Lambda execution.  
- **Important:** Make sure to confirm your email subscription after the first deployment (check your email for the confirmation link).
+- Created via CDK
+- Files from `sample_files/` can be uploaded manually via `upload_files.py` or using a dedicated workflow
 
 ---
 
-##  Manual Lambda Test
+## SNS & Email Subscription
+
+- An SNS topic is created via code
+- You will receive an email upon Lambda execution  
+**Important:** Make sure to confirm your email subscription after the first deployment (check your email for the confirmation link)
+
+---
+
+## Manual Lambda Test
 
 You can manually invoke the Lambda function from the AWS Console:
 
-1️ Go to AWS Lambda Console → Your function → Test.  
-2️ Create a new test event (you can keep the default content).  
-3️ Click **Test** and check CloudWatch logs and your email for results.
+1. Go to AWS Lambda Console → Your function → Test
+2. Create a new test event (you can keep the default content)
+3. Click **Test** and check CloudWatch logs and your email for results
 
 ---
 
-##  Tools & Frameworks Used
+## Tools & Frameworks Used
 
 - AWS CDK (Python)
 - AWS Lambda
@@ -106,38 +106,49 @@ You can manually invoke the Lambda function from the AWS Console:
 
 ---
 
-##  Folder Structure
+## Folder Structure
 
 ```
-devops-student-assignment/
-├── .github/workflows/
-│   └── deploy.yml
-├── devops_student_assignment/
+nice-assignment/
+├── .github/
+│   └── workflows/
+│       ├── deploy.yml
+│       └── upload_files.yml  (optional)
+├── lambda_code/
+│   └── handler.py
+├── nice_assignment_stack/
 │   ├── __init__.py
-│   └── devops_student_assignment_stack.py
+│   └── nice_assignment_stack.py
 ├── sample_files/
 │   ├── file1.txt
-│   └── file2.txt
+│   ├── file2.txt
+│   ├── file3.txt
+│   └── file4.txt
+├── tests/
+│   ├── __init__.py
+│   ├── test_handler.py
+│   └── unit/
+│       └── test_stack_creates_expected_resources.py
 ├── upload_files.py
 ├── app.py
 ├── cdk.json
 ├── requirements.txt
+├── requirements-dev.txt
 ├── README.md
+└── .gitignore
 ```
 
 ---
 
-##  Status
+## Status
 
--  Fully deployed
--  Email notifications working
--  Files uploaded
--  Manual and automated triggers tested
+- Fully deployed
+- Email notifications working
+- Files uploaded
+- Manual and automated triggers tested
 
 ---
 
-##  Contact
+## Contact
 
 For any questions, feel free to open an issue or contact me directly via GitHub.
-
----
