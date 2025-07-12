@@ -50,10 +50,16 @@ cdk deploy --require-approval never
 
 ## GitHub Actions
 
-A GitHub Actions workflow (`.github/workflows/deploy.yml`) is configured to:
-- Deploy the CDK stack.
-- Optionally upload files from `sample_files/` to S3 in a separate workflow.
-- Can be triggered manually using `workflow_dispatch`.
+This repository includes GitHub Actions workflows under `.github/workflows/`:
+
+- **deploy.yml**: Deploys the CDK stack to AWS automatically.
+- **upload_files.yml** (optional): Uploads files to the S3 bucket separately if needed.
+- **Tests are run automatically on each push or pull request to ensure code quality and verify infrastructure.**
+
+### Tests include
+
+- Unit tests for the Lambda function logic (using `pytest` and `monkeypatch`).
+- Infrastructure tests to verify resources created by CDK (using `aws_cdk.assertions`).
 
 ---
 
