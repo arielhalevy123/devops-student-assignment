@@ -1,25 +1,19 @@
 import boto3
 import os
 
-s3 = boto3.client("s3")
-sns = boto3.client("sns")
-
-
 def list_s3_files(bucket_name):
     """List all files in an S3 bucket."""
-    print(f"Listing files in bucket: {bucket_name}")
+    s3 = boto3.client("s3")
     response = s3.list_objects_v2(Bucket=bucket_name)
     files = [obj['Key'] for obj in response.get('Contents', [])]
-    print(f"Found files: {files}")
+    print(f"Files in bucket: {files}")
     return files
-
 
 def send_sns_message(topic_arn, message):
     """Send a message to an SNS topic."""
-    print(f"Sending message to SNS topic: {topic_arn}")
+    sns = boto3.client("sns")
     sns.publish(TopicArn=topic_arn, Message=message)
-    print("Message sent successfully.")
-
+    print(f"Sent message to topic {topic_arn}")
 
 def handler(event, context):
     """Lambda entry point."""
@@ -27,10 +21,9 @@ def handler(event, context):
         bucket_name = os.environ['BUCKET_NAME']
         topic_arn = os.environ['TOPIC_ARN']
 
-        print("Lambda started execution.")
+        print("Starting Lambda execution.")
         files = list_s3_files(bucket_name)
-        message = f'Lambda execution completed. Files in bucket: {files}'
-        print("Preparing to send SNS message.")
+        message = f"Lambda execution completed. Files in bucket: {files}"
         send_sns_message(topic_arn, message)
 
         print("Lambda completed successfully.")
