@@ -2,7 +2,7 @@ import boto3
 import os
 
 
-bucket_name = "devopsstudentassignmentstack-mybucketf68f3ff0-q6ibws3kjamw"
+bucket_name = "niceassignmentstack-niceassignmentbucketc5e5d7f2-eropzioganqq"
 
 
 s3 = boto3.client("s3")
