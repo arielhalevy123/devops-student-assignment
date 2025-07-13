@@ -1,3 +1,5 @@
+# Create README content as plain text
+readme_content = """
 # Nice Assignment
 
 ## Overview
@@ -52,7 +54,7 @@ cdk deploy --require-approval never
 
 This repository includes GitHub Actions workflows under `.github/workflows/`:
 
-- **deploy.yml**: Deploys the CDK stack to AWS automatically.
+- **deploy.yml**: Installs dependencies, runs tests, deploys the CDK stack, and uploads sample files to S3 automatically.
 - **upload_files.yml** (optional): Uploads files to the S3 bucket separately if needed.
 - **Tests are run automatically on each push or pull request to ensure code quality and verify infrastructure.**
 
@@ -99,6 +101,16 @@ You can manually invoke the Lambda function from the AWS Console:
 2. Create a new test event (you can keep the default content)
 3. Click **Test** and check CloudWatch logs and your email for results
 
+### Manual Lambda Invocation via CLI
+
+You can also invoke the Lambda function locally using the provided script:
+
+```bash
+python invoke_lambda.py
+```
+
+> This script uses `boto3` and requires your AWS credentials and region to be configured.
+
 ---
 
 ## Tools & Frameworks Used
@@ -136,6 +148,7 @@ nice-assignment/
 │   └── unit/
 │       └── test_stack_creates_expected_resources.py
 ├── upload_files.py
+├── invoke_lambda.py
 ├── app.py
 ├── cdk.json
 ├── requirements.txt
@@ -158,3 +171,10 @@ nice-assignment/
 ## Contact
 
 For any questions, feel free to open an issue or contact me directly via GitHub.
+"""
+
+# Write to a file
+with open("/mnt/data/README_final.md", "w") as f:
+    f.write(readme_content)
+
+"/mnt/data/README_final.md"
