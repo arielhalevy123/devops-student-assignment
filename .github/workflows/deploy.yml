@@ -72,3 +72,6 @@ jobs:
 
     - name: CDK Deploy
       run: cdk deploy --require-approval never
+
+    - name: Upload files to S3
+      run: python upload_files.py
