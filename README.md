@@ -169,7 +169,7 @@ nice-assignment/
 ## Contact
 
 For any questions, feel free to open an issue or contact me directly via GitHub.
-"""
+
 
 # Write to a file
 with open("/mnt/data/README_final.md", "w") as f:
