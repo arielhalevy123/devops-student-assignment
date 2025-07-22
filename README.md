@@ -1,5 +1,3 @@
-# Create README content as plain text
-readme_content = """
 # Nice Assignment
 
 ## Overview
